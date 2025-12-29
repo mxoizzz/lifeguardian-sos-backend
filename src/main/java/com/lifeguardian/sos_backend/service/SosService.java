@@ -14,21 +14,23 @@ public class SosService {
 
     public void sendSos(SosRequest request) {
 
-        String locationUrl =
-                "https://maps.google.com/?q=" +
-                request.getLatitude() + "," +
-                request.getLongitude();
+        // ✅ Live tracking web page URL
+        String trackingUrl =
+                "https://lifeguardianplus-daeb0.web.app/track.html?uid="
+                        + request.getUid();
 
         String messageBody = """
-            🚨 SOS ALERT 🚨
+🚨 SOS ALERT 🚨
 
-            %s needs immediate help!
+%s needs immediate help!
 
-            📍 Location:
-            %s
+📍 Live Location (updates in real-time):
+%s
 
-            Sent via LifeGuardian+
-            """.formatted(request.getUserName(), locationUrl);
+⚠️ Please open this link to track the location live.
+
+Sent via LifeGuardian+
+""".formatted(request.getUserName(), trackingUrl);
 
         for (String to : request.getContacts()) {
             Message.creator(

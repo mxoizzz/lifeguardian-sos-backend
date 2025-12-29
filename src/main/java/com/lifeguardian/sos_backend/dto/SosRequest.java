@@ -5,6 +5,7 @@ import java.util.List;
 
 @Data
 public class SosRequest {
+    private String uid;
     private String userName;
     private double latitude;
     private double longitude;
